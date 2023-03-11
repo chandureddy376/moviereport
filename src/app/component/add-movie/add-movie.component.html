@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+    <div class="submit form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="title" ><h3>Title</h3></label>
+          <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="Movie.title"
+          name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description"><h3>Description</h3></label>
+          <input
+          type="text"
+          class="form-control"
+          id="description"
+          required
+          [(ngModel)]="Movie.description"
+          name="description"
+          />
+        </div>
+    
+        <button (click)="saveMovie()" class="btn btn-outline-danger" style="margin-top: 2%;"><h4>Submit</h4></button>
+        </div>
+    
+      <div *ngIf="submitted">
+        <h4>Movie was submitted successfully!</h4>
+        <button (click)="AddMovie()">Add-Movie</button>
+      </div>
+    </div>
+    </div>
+    <div class="col-md-1"></div>
+    </div>
+    </div>

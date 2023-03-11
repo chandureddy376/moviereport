@@ -1,0 +1,96 @@
+<table class="table table-bordered table-dark" style="margin-top: 2%;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>published</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>View</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let c of movies">
+        <tr>
+           <td>{{c.id}}</td> <td>{{c.title}}</td><td>{{c.description}}</td><td>{{c.published}}</td>
+            <td><button class="btn btn-outline-success" (click)="editMovie(c,c)" data-toggle="modal" data-target="#EditModal" >Edit</button></td>
+            <td><button class="btn btn-outline-danger" (click)="deleteMovie(c)" data-toggle="modal" data-target="#DeleteModal">Delete</button></td>
+            <td><a class="btn btn-outline-info" href="movie-details/{{c.id}}" (click)='view()'  >View</a></td>
+            <app-movie-list [movieid]="movieid"></app-movie-list>
+        </tr>
+    
+    </tbody>
+    </table>
+    <div class="modal" id="EditModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="EditModalLabel">editMovie</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+            <div class="submit form">
+              <div>
+                <div class="form-group">
+                  <label for="title" ><h3>Title</h3></label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  required
+                  [(ngModel)]="movies.title"
+                  name="title"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="description"><h3>Description</h3></label>
+                  <input
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  required
+                  [(ngModel)]="movies.description"
+                  name="description"
+                  />
+                </div>
+            
+              <div *ngIf="submitted">
+                <h4>Movie was updated successfully!</h4>
+              </div>
+            </div>
+            </div>
+            <div class="col-md-1"></div>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="updateMovie()" >Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="modal" id="DeleteModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="DeleteModalLabel">deleteMovie </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want delete the data</h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="deleteConfirm()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
